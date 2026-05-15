@@ -15,7 +15,7 @@ interface NavbarProps {
     toggleDarkMode: () => void;
 }
 
-const navLinks = ['Paquetes', 'Destinos', 'Nosotros', 'Opiniones', 'FAQ', 'Contacto'];
+const navLinks = ['Paquetes', 'Destinos', 'Nosotros', 'Opiniones', 'FAQ', 'Cotizador', 'Contacto'];
 
 const iconBtnClass =
     'w-[2.375rem] h-[2.375rem] min-w-[2.375rem] rounded-full border border-[var(--border)] bg-transparent text-[var(--text-main)] hover:bg-[var(--primary)]/10 hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors';

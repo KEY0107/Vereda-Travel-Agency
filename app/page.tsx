@@ -9,6 +9,8 @@ import { DestinationsCarousel } from '@/app/components/sections/Carousel/Destina
 import { FAQ } from '@/app/components/sections/FAQ/FAQ';
 import { Reviews } from '@/app/components/sections/Reviews/Reviews';
 import { About } from '@/app/components/sections/About/About';
+import { Quoter } from '@/app/components/sections/Quoter/Quoter';
+import { Contact } from '@/app/components/sections/Contact/Contact';
 import { Footer } from '@/app/components/sections/Footer/Footer';
 
 export default function Home() {
@@ -25,6 +27,8 @@ export default function Home() {
                 <FAQ />
                 <Reviews />
                 <About />
+                <Quoter />
+                <Contact />
                 <Footer />
             </main>
         </div>

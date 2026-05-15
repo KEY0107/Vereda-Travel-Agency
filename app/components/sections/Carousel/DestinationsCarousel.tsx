@@ -47,7 +47,7 @@ export function DestinationsCarousel() {
 
     return (
         <section id="destinos" className="py-24 bg-surface">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <motion.div
                     initial={{ opacity: 0, y: 32 }}
@@ -69,7 +69,10 @@ export function DestinationsCarousel() {
                     transition={{ duration: 0.6, ease: EASE, delay: 0.15 }}
                 >
                     {/* Track */}
-                    <div className="overflow-hidden rounded-2xl" ref={containerRef}>
+                    <div
+                        className="overflow-hidden rounded-2xl px-8 sm:px-0"
+                        ref={containerRef}
+                    >
                         <motion.div
                             className="flex"
                             animate={{ x: slideWidth > 0 ? -currentIndex * slideWidth : 0 }}
@@ -78,7 +81,7 @@ export function DestinationsCarousel() {
                             {destinations.map((dest, i) => (
                                 <div
                                     key={i}
-                                    className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2"
+                                    className="w-[85%] sm:w-full md:w-1/2 lg:w-1/3 shrink-0 p-2"
                                     aria-label={`${dest.city}, ${dest.country}`}
                                 >
                                     <motion.div
@@ -117,19 +120,19 @@ export function DestinationsCarousel() {
                     {/* Nav buttons */}
                     <motion.button
                         onClick={handlePrev}
-                        className={`${NAV_BTN} -left-5`}
+                        className={`${NAV_BTN} left-1 sm:-left-5`}
                         whileTap={{ scale: 0.92 }}
                         aria-label="Destino anterior"
                     >
-                        <ChevronLeft className="w-5 h-5" />
+                        <ChevronLeft className="w-3 h-3" />
                     </motion.button>
                     <motion.button
                         onClick={handleNext}
-                        className={`${NAV_BTN} -right-5`}
+                        className={`${NAV_BTN} right-1 sm:-right-5`}
                         whileTap={{ scale: 0.92 }}
                         aria-label="Destino siguiente"
                     >
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-3 h-3" />
                     </motion.button>
 
                     {/* Dots */}
