@@ -12,6 +12,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Vereda — Agencia de Viajes",
   description: "Paquetes turísticos nacionales e internacionales. Experiencias personalizadas para cada viajero.",
+  icons: {
+    icon: "/icon.png"
+  }
 };
 
 export default function RootLayout({
