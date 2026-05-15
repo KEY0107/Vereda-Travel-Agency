@@ -37,14 +37,14 @@ const images = [
 
 export function About() {
     return (
-        <section id="nosotros" className="py-32 bg-background">
+        <section id="nosotros" className="py-32 bg-background overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
 
                     {/* Left — text */}
                     <motion.div
-                        initial={{ opacity: 0, x: -32 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-80px' }}
                         transition={{ duration: 0.75, ease: EASE }}
                     >
@@ -105,8 +105,8 @@ export function About() {
                     {/* Right — image collage (two independent flex columns) */}
                     <motion.div
                         className="flex gap-3"
-                        initial={{ opacity: 0, x: 32 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-80px' }}
                         transition={{ duration: 0.75, ease: EASE, delay: 0.1 }}
                     >
