@@ -37,67 +37,64 @@ const images = [
 
 export function About() {
     return (
-        <section id="nosotros" className="py-32 bg-[var(--background)]">
+        <section id="nosotros" className="py-32 bg-background">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-2 gap-20 items-start">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-                    {/* Left */}
+                    {/* Left — text */}
                     <motion.div
-                        className="space-y-8"
-                        initial={{ opacity: 0, x: -40 }}
+                        initial={{ opacity: 0, x: -32 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: '-80px' }}
-                        transition={{ duration: 0.8, ease: EASE }}
+                        transition={{ duration: 0.75, ease: EASE }}
                     >
-                        <div>
-                            <motion.div
-                                className="text-sm uppercase tracking-widest text-[var(--primary)] mb-4 font-semibold"
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                            >
-                                Por qué elegirnos
-                            </motion.div>
-                            <h2 className="text-4xl md:text-5xl font-bold font-playfair text-[var(--text-main)] mb-8">
-                                Por qué elegir Vereda
-                            </h2>
-                            <div className="space-y-6">
-                                <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
-                                    Fundada en Ciudad Juárez, Chihuahua, Vereda nació de la pasión por conectar
-                                    a las personas con el mundo. Desde 2013, hemos transformado sueños de viaje
-                                    en experiencias reales que cambian vidas.
-                                </p>
-                                <p className="text-lg leading-relaxed text-[var(--text-secondary)]">
-                                    No somos solo una agencia de viajes. Somos un equipo de exploradores,
-                                    curadores de experiencias y diseñadores de momentos inolvidables. Tu mundo,
-                                    sin límites, es nuestra promesa.
-                                </p>
-                            </div>
+                        <motion.p
+                            className="text-xs uppercase tracking-widest font-semibold text-(--primary) mb-4"
+                            initial={{ opacity: 0, y: 8 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, ease: EASE, delay: 0.15 }}
+                        >
+                            Por qué elegirnos
+                        </motion.p>
+
+                        <h2 className="text-4xl md:text-5xl font-bold font-playfair text-(--text-main) mb-6 leading-tight">
+                            La agencia que <br />
+                            <span className="text-(--primary)">transforma sueños</span>
+                        </h2>
+
+                        <div className="space-y-4 mb-10">
+                            <p className="text-base leading-relaxed text-(--text-secondary)">
+                                Fundada en Ciudad Juárez, Chihuahua, Vereda nació de la pasión por conectar
+                                a las personas con el mundo. Desde 2013, hemos transformado sueños de viaje
+                                en experiencias reales que cambian vidas.
+                            </p>
+                            <p className="text-base leading-relaxed text-(--text-secondary)">
+                                No somos solo una agencia de viajes. Somos un equipo de exploradores,
+                                curadores de experiencias y diseñadores de momentos inolvidables.
+                                Tu mundo, sin límites, es nuestra promesa.
+                            </p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-6 pt-8">
+                        {/* Feature grid */}
+                        <div className="grid grid-cols-2 gap-5">
                             {features.map((f, i) => {
                                 const Icon = f.icon;
                                 return (
                                     <motion.div
                                         key={f.title}
-                                        className="space-y-3"
-                                        initial={{ opacity: 0, y: 20 }}
+                                        initial={{ opacity: 0, y: 16 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.5, ease: EASE, delay: 0.3 + i * 0.08 }}
+                                        transition={{ duration: 0.45, ease: EASE, delay: 0.25 + i * 0.07 }}
+                                        className="flex gap-3 p-4 rounded-2xl border border-border bg-surface hover:border-(--primary)/30 transition-colors duration-300"
                                     >
-                                        <motion.div
-                                            className="w-14 h-14 rounded-xl flex items-center justify-center bg-[var(--primary)]/10"
-                                            whileHover={{ scale: 1.1, rotate: 5 }}
-                                            transition={{ duration: 0.2 }}
-                                        >
-                                            <Icon className="w-7 h-7 text-[var(--primary)]" />
-                                        </motion.div>
+                                        <div className="w-10 h-10 rounded-xl bg-(--primary)/10 flex items-center justify-center shrink-0">
+                                            <Icon className="w-5 h-5 text-(--primary)" />
+                                        </div>
                                         <div>
-                                            <h3 className="font-semibold text-[var(--text-main)] mb-2">{f.title}</h3>
-                                            <p className="text-sm leading-relaxed text-[var(--text-secondary)]">{f.description}</p>
+                                            <h3 className="font-semibold text-sm text-(--text-main) mb-0.5 leading-snug">{f.title}</h3>
+                                            <p className="text-xs leading-relaxed text-(--text-secondary)">{f.description}</p>
                                         </div>
                                     </motion.div>
                                 );
@@ -105,24 +102,51 @@ export function About() {
                         </div>
                     </motion.div>
 
-                    {/* Right — image grid */}
+                    {/* Right — image collage (two independent flex columns) */}
                     <motion.div
-                        className="grid grid-cols-2 gap-4"
-                        initial={{ opacity: 0, x: 40 }}
+                        className="flex gap-3"
+                        initial={{ opacity: 0, x: 32 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: '-80px' }}
-                        transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+                        transition={{ duration: 0.75, ease: EASE, delay: 0.1 }}
                     >
-                        {images.map((src, i) => (
-                            <motion.img
-                                key={i}
-                                src={src}
-                                alt={`Equipo Vereda ${i + 1}`}
-                                className={`rounded-xl object-cover w-full ${i % 2 === 1 ? 'h-[280px] mt-8' : 'h-[250px]'}`}
-                                whileHover={{ scale: 1.03 }}
-                                transition={{ duration: 0.3 }}
-                            />
-                        ))}
+                        {/* Column A: images 0 and 2 */}
+                        <div className="flex flex-col gap-3 flex-1">
+                            {[images[0], images[2]].map((src, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="relative overflow-hidden rounded-2xl group"
+                                    whileHover={{ scale: 1.01 }}
+                                    transition={{ duration: 0.35, ease: EASE }}
+                                >
+                                    <img
+                                        src={src}
+                                        alt={`Equipo Vereda ${i * 2 + 1}`}
+                                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-102"
+                                    />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Column B: images 1 and 3, offset downward */}
+                        <div className="flex flex-col gap-3 flex-1 mt-10">
+                            {[images[1], images[3]].map((src, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="relative overflow-hidden rounded-2xl group"
+                                    whileHover={{ scale: 1.01 }}
+                                    transition={{ duration: 0.35, ease: EASE }}
+                                >
+                                    <img
+                                        src={src}
+                                        alt={`Equipo Vereda ${i * 2 + 2}`}
+                                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-102"
+                                    />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                </motion.div>
+                            ))}
+                        </div>
                     </motion.div>
                 </div>
             </div>
