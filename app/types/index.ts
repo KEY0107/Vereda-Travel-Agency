@@ -15,6 +15,7 @@ export interface Destination {
     city: string;
     country: string;
     image: string;
+    imageAlt: string;
 }
 
 export interface Review {

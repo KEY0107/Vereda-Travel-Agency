@@ -70,7 +70,7 @@ export function DestinationsCarousel() {
                 >
                     {/* Track */}
                     <div
-                        className="overflow-hidden rounded-2xl px-8 sm:px-0"
+                        className="overflow-hidden rounded-2xl"
                         ref={containerRef}
                     >
                         <motion.div
@@ -81,7 +81,7 @@ export function DestinationsCarousel() {
                             {destinations.map((dest, i) => (
                                 <div
                                     key={i}
-                                    className="w-[85%] sm:w-full md:w-1/2 lg:w-1/3 shrink-0 p-2"
+                                    className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2"
                                     aria-label={`${dest.city}, ${dest.country}`}
                                 >
                                     <motion.div
@@ -91,7 +91,7 @@ export function DestinationsCarousel() {
                                     >
                                         <img
                                             src={dest.image}
-                                            alt={`${dest.city}, ${dest.country}`}
+                                            alt={dest.imageAlt}
                                             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                                         />
 
