@@ -2,11 +2,14 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { destinations } from '@/app/data/destinations';
 import { SectionHeader } from '@/app/components/ui/SectionHeader';
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const NAV_BTN =
+    'absolute top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center bg-(--surface) border border-(--border) text-(--text-main) shadow-lg hover:bg-(--primary) hover:border-(--primary) hover:text-white transition-colors z-10';
 
 export function DestinationsCarousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,7 +33,7 @@ export function DestinationsCarousel() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prev) => (prev >= destinations.length - slidesPerView ? 0 : prev + 1));
-        }, 4000);
+        }, 4500);
         return () => clearInterval(interval);
     }, [currentIndex, slidesPerView]);
 
@@ -43,8 +46,9 @@ export function DestinationsCarousel() {
     const dotCount = Math.max(0, destinations.length - slidesPerView + 1);
 
     return (
-        <section id="destinos" className="py-24 bg-[var(--surface)]">
+        <section id="destinos" className="py-24 bg-surface">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
                 <motion.div
                     initial={{ opacity: 0, y: 32 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -57,33 +61,52 @@ export function DestinationsCarousel() {
                     />
                 </motion.div>
 
-                <div className="relative">
-                    <div className="overflow-hidden" ref={containerRef}>
+                <motion.div
+                    className="relative"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.6, ease: EASE, delay: 0.15 }}
+                >
+                    {/* Track */}
+                    <div className="overflow-hidden rounded-2xl" ref={containerRef}>
                         <motion.div
                             className="flex"
                             animate={{ x: slideWidth > 0 ? -currentIndex * slideWidth : 0 }}
-                            transition={{ duration: 0.55, ease: EASE }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 32, mass: 1 }}
                         >
                             {destinations.map((dest, i) => (
                                 <div
                                     key={i}
-                                    className="w-full md:w-1/2 lg:w-1/3 shrink-0 px-3"
+                                    className="w-full md:w-1/2 lg:w-1/3 shrink-0 p-2"
                                     aria-label={`${dest.city}, ${dest.country}`}
                                 >
                                     <motion.div
-                                        className="relative rounded-2xl overflow-hidden group cursor-pointer aspect-[3/4]"
-                                        whileHover={{ scale: 1.02 }}
-                                        transition={{ duration: 0.3 }}
+                                        className="relative rounded-2xl overflow-hidden group cursor-pointer aspect-3/4"
+                                        whileHover={{ scale: 1.015 }}
+                                        transition={{ duration: 0.35, ease: EASE }}
                                     >
                                         <img
                                             src={dest.image}
                                             alt={`${dest.city}, ${dest.country}`}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                                        {/* Gradient layers */}
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+                                        <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+
+                                        {/* Content */}
                                         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                            <h3 className="text-3xl font-bold font-playfair mb-1">{dest.city}</h3>
-                                            <p className="text-sm uppercase tracking-wider opacity-70">{dest.country}</p>
+                                            <motion.div
+                                                className="flex items-center gap-1.5 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                            >
+                                                <MapPin className="w-3.5 h-3.5" />
+                                                <span className="text-xs uppercase tracking-widest font-medium">{dest.country}</span>
+                                            </motion.div>
+                                            <h3 className="text-3xl font-bold font-playfair leading-tight translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                                {dest.city}
+                                            </h3>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -91,38 +114,38 @@ export function DestinationsCarousel() {
                         </motion.div>
                     </div>
 
+                    {/* Nav buttons */}
                     <motion.button
                         onClick={handlePrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full flex items-center justify-center bg-[var(--surface)] border-2 border-[var(--border)] text-[var(--text-main)] shadow-lg"
-                        whileHover={{ scale: 1.1, x: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label="Anterior"
+                        className={`${NAV_BTN} -left-5`}
+                        whileTap={{ scale: 0.92 }}
+                        aria-label="Destino anterior"
                     >
-                        <ChevronLeft className="w-6 h-6" />
+                        <ChevronLeft className="w-5 h-5" />
                     </motion.button>
                     <motion.button
                         onClick={handleNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full flex items-center justify-center bg-[var(--surface)] border-2 border-[var(--border)] text-[var(--text-main)] shadow-lg"
-                        whileHover={{ scale: 1.1, x: 2 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label="Siguiente"
+                        className={`${NAV_BTN} -right-5`}
+                        whileTap={{ scale: 0.92 }}
+                        aria-label="Destino siguiente"
                     >
-                        <ChevronRight className="w-6 h-6" />
+                        <ChevronRight className="w-5 h-5" />
                     </motion.button>
 
-                    <div className="flex justify-center gap-2 mt-8">
+                    {/* Dots */}
+                    <div className="flex justify-center items-center gap-2 mt-7">
                         {Array.from({ length: dotCount }).map((_, i) => (
                             <motion.button
                                 key={i}
                                 onClick={() => setCurrentIndex(i)}
-                                className={`h-2 rounded-full ${currentIndex === i ? 'bg-[var(--primary)]' : 'bg-[var(--border)]'}`}
-                                animate={{ width: currentIndex === i ? 32 : 8 }}
-                                transition={{ duration: 0.3, ease: EASE }}
-                                aria-label={`Ir a la diapositiva ${i + 1}`}
+                                className={`h-1.5 rounded-full transition-colors ${currentIndex === i ? 'bg-(--primary)' : 'bg-border hover:bg-(--text-secondary)'}`}
+                                animate={{ width: currentIndex === i ? 28 : 6 }}
+                                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                                aria-label={`Ir al destino ${i + 1}`}
                             />
                         ))}
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
