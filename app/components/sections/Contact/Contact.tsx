@@ -98,7 +98,7 @@ export function Contact() {
     const set = (field: keyof FormState) => (value: string) => setForm((f) => ({ ...f, [field]: value }));
 
     return (
-        <section id="contacto" className="py-24 bg-background">
+        <section id="contacto" className="py-24 bg-background overflow-x-hidden">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 32 }}
@@ -116,8 +116,8 @@ export function Contact() {
                     {/* ── Left info panel (below form on mobile) ── */}
                     <motion.div
                         className="lg:col-span-2 space-y-6 order-2 lg:order-1"
-                        initial={{ opacity: 0, x: -24 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-60px' }}
                         transition={{ duration: 0.65, ease: EASE, delay: 0.1 }}
                     >
@@ -153,8 +153,8 @@ export function Contact() {
                     {/* ── Form (first on mobile) ── */}
                     <motion.div
                         className="lg:col-span-3 order-1 lg:order-2"
-                        initial={{ opacity: 0, x: 24 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-60px' }}
                         transition={{ duration: 0.65, ease: EASE, delay: 0.15 }}
                     >
