@@ -66,8 +66,8 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                         aria-label="Ir al inicio"
                     >
-                        <Compass className="w-8 h-8 text-(--primary)" />
-                        <span className="text-2xl font-bold text-(--primary) font-playfair">
+                        <Compass className="w-5 h-5 text-(--primary)" />
+                        <span className="text-xl md:text-2xl font-bold text-(--primary) font-playfair">
                             Vereda
                         </span>
                     </button>
